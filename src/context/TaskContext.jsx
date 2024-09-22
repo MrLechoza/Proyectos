@@ -7,22 +7,33 @@ export function TaskContextProvider(props) {
   const [tasks, setTasks] = useState([]);
 
   function createTask(task) {
-    const newTask= [
+    const newTask = [
       ...tasks,
       {
         title: task.title,
-        id: tasks.length + 1 ,
+        id: tasks.length + 1,
         description: task.description,
       },
     ];
     setTasks(newTask);
-    localStorage.setItem("tasks", JSON.stringify(newTask))
+    localStorage.setItem("tasks", JSON.stringify(newTask));
+  }
+
+  function editTask(taskId, newTitle, newDescription) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, title: newTitle, description: newDescription };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
 
   function deleteTask(taskId) {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId)
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks))
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
 
   useEffect(() => {
@@ -30,20 +41,22 @@ export function TaskContextProvider(props) {
     if (savedTask) {
       setTasks(savedTask);
     } else {
-      setTasks(data)
+      setTasks(data);
     }
   }, []);
 
-  console.log(localStorage.getItem("task"))
   return (
     <TaskContext.Provider
       value={{
         tasks,
         deleteTask,
         createTask,
+        editTask,
       }}
     >
-      {props.children}
+      { props.children }
     </TaskContext.Provider>
   );
-}
+};
+
+export default TaskContextProvider;
