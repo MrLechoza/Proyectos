@@ -95,14 +95,14 @@ function TaskForm() {
               ></textarea>
             </div>
             <button
-              className="bg-black text-white p-2 rounded-md hover:bg-[#242424] transition duration-300  delay-300 ease-in-out hover:-translate-y-1 hover:scale-100"
+              className="bg-black text-white p-2 rounded-md hover:bg-[#242424] transition duration-300  delay-0 ease-in-out hover:-translate-y-1 hover:scale-100"
               onClick={handleSubmit}
             >
               Guardar
             </button>
             <button 
               onClick={() => setModalOpen(false)}
-              className="bg-[#de1212b4] text-white p-2 ml-3 rounded-md hover:bg-[#242424] transition duration-300  delay-300 ease-in-out hover:-translate-y-1 hover:scale-100">Cancelar</button>
+              className="bg-[#de1212b4] text-white p-2 ml-3 rounded-md hover:bg-[#de121284] transition duration-300  delay-0 ease-in-out hover:-translate-y-1 hover:scale-100">Cancelar</button>
           </form>
         </div>
       )}
